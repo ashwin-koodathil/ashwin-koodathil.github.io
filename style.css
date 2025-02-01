@@ -1,3 +1,18 @@
+/* Add these new styles at the top */
+.profile-picture {
+    width: 200px;
+    margin: 20px auto;
+    border-radius: 50%;
+    overflow: hidden;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+.profile-picture img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
 body {
     font-family: Arial, sans-serif;
     line-height: 1.6;
