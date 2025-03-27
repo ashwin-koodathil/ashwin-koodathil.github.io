@@ -3,14 +3,14 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Learning 1: Transformers - Ashwin Koodathil</title>
+  <title>Learning 1: Transformers - A Mathematical Approach | Ashwin Koodathil</title>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet"/>
   <link rel="stylesheet" href="../style.css" />
 </head>
 <body>
   <header>
     <div class="header-bg">
-      <h1>Learning 1: Transformers</h1>
+      <h1>Learning 1: Transformers - A Mathematical Approach</h1>
       <nav>
         <a href="index.html">← Back to Learnings</a>
       </nav>
@@ -21,26 +21,39 @@
     <section class="section">
       <h2>Overview</h2>
       <p>
-        Transformers are deep learning models introduced in the paper “Attention is All You Need.” They removed recurrence and introduced self-attention, enabling parallelism and efficient handling of long sequences.
+        This note is a deep dive into the Transformer architecture through a mathematical lens. 
+        I'm referencing the original Google paper <a href="https://arxiv.org/abs/1706.03762" target="_blank">"Attention is All You Need"</a> 
+        to demystify how Transformers work under the hood.
+      </p>
+      <p>
+        My goal is to simplify the Transformer model by breaking it down into smaller, logical, and mathematically grounded chunks. 
+        This helps me (and hopefully others) grasp the power and elegance behind the architecture that drives today's leading AI models.
       </p>
     </section>
 
     <section class="section">
       <h3>Key Concepts</h3>
       <ul>
-        <li>Self-Attention</li>
-        <li>Multi-Head Attention</li>
-        <li>Positional Encoding</li>
-        <li>Encoder-Decoder Architecture</li>
-        <li>Layer Normalization</li>
+        <li><strong>Self-Attention:</strong> Weighted influence of each token on the others in the same sequence</li>
+        <li><strong>Multi-Head Attention:</strong> Multiple attention mechanisms run in parallel to capture diverse relationships</li>
+        <li><strong>Positional Encoding:</strong> Injects order information using sine and cosine functions</li>
+        <li><strong>Encoder-Decoder Architecture:</strong> Encodes inputs and decodes them into outputs step-by-step</li>
+        <li><strong>Layer Normalization:</strong> Helps with stability and faster convergence</li>
       </ul>
     </section>
 
     <section class="section">
       <h3>Applications</h3>
       <p>
-        Transformers power models like BERT, GPT, T5, and Vision Transformers (ViT) used in NLP, CV, and even biology (like AlphaFold).
+        Transformers have revolutionized AI applications such as:
       </p>
+      <ul>
+        <li>Language Modeling (BERT, GPT)</li>
+        <li>Machine Translation</li>
+        <li>Text Summarization</li>
+        <li>Computer Vision (ViT)</li>
+        <li>Protein Folding (AlphaFold)</li>
+      </ul>
     </section>
   </main>
 
