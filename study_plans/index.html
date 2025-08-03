@@ -1,0 +1,477 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>AI Mastery Syllabus: Deep Learning, Generative AI & LLM-Ops</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <style>
+    :root {
+      --bg:#0f111a;
+      --card:#1f2236;
+      --fg:#e3e8ff;
+      --muted:#8a93b2;
+      --radius:12px;
+      --shadow:0 20px 40px -10px rgba(0,0,0,0.4);
+      --accent:#7c5cff;
+      --mono: "Fira Code", monospace;
+      font-family: system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
+    }
+    *{box-sizing:border-box;}
+    body {
+      margin:0;
+      background: linear-gradient(135deg,#0f111a 0%,#1b1f38 70%);
+      color: var(--fg);
+      line-height:1.5;
+      min-height:100vh;
+    }
+    a{color: var(--accent); text-decoration:none;}
+    a:hover{text-decoration:underline;}
+    .container{
+      max-width: 1100px;
+      margin:0 auto;
+      padding:2rem 1rem 4rem;
+    }
+    header{
+      display:flex;
+      flex-wrap:wrap;
+      justify-content: space-between;
+      align-items:flex-start;
+      gap:1rem;
+      padding-bottom:1rem;
+      border-bottom:1px solid rgba(255,255,255,0.08);
+    }
+    h1{
+      margin:0;
+      font-size:2.2rem;
+      line-height:1.1;
+    }
+    .subtitle{
+      margin:0.3rem 0 0;
+      font-size:0.95rem;
+      color: var(--muted);
+    }
+    nav {
+      margin-top:0.5rem;
+    }
+    .nav-links {
+      display:flex;
+      gap:1rem;
+      flex-wrap:wrap;
+      font-size:0.9rem;
+      padding:0;
+      list-style:none;
+    }
+    .nav-links a{
+      background: rgba(255,255,255,0.05);
+      padding:6px 12px;
+      border-radius:8px;
+      display:inline-block;
+    }
+    section{
+      margin-top:2rem;
+    }
+    .part-pill{
+      display:inline-block;
+      background: var(--accent);
+      padding:4px 14px;
+      border-radius:999px;
+      font-size:0.65rem;
+      text-transform:uppercase;
+      letter-spacing:1px;
+      margin-bottom:6px;
+    }
+    .grid{
+      display:grid;
+      gap:1.5rem;
+    }
+    .card{
+      background: var(--card);
+      border-radius: var(--radius);
+      padding:1.5rem 1.75rem;
+      position:relative;
+      box-shadow: var(--shadow);
+    }
+    table{
+      width:100%;
+      border-collapse:collapse;
+      margin-top:0.5rem;
+      font-size:0.9rem;
+    }
+    th, td{
+      padding:12px 10px;
+      text-align:left;
+    }
+    th{
+      background:rgba(255,255,255,0.05);
+      position:sticky;
+      top:0;
+    }
+    tr{
+      border-bottom:1px solid rgba(255,255,255,0.07);
+    }
+    .small{
+      font-size:0.75rem;
+      color: var(--muted);
+    }
+    .badge{
+      background: rgba(255,255,255,0.08);
+      padding:4px 10px;
+      border-radius:8px;
+      font-size:0.7rem;
+    }
+    .resource-list{
+      list-style:none;
+      padding:0;
+      margin:0;
+    }
+    .resource-list li{
+      margin-bottom:8px;
+    }
+    .code {
+      background: rgba(255,255,255,0.04);
+      padding:8px 12px;
+      border-radius:6px;
+      font-family: var(--mono);
+      overflow-x:auto;
+      font-size:0.8rem;
+    }
+    .footer{
+      margin-top:4rem;
+      padding-top:2rem;
+      border-top:1px solid rgba(255,255,255,0.08);
+      display:flex;
+      flex-wrap:wrap;
+      gap:1rem;
+      justify-content: space-between;
+      font-size:0.8rem;
+    }
+    .pill {background: rgba(255,255,255,0.1);padding:6px 12px;border-radius:50px;font-size:0.7rem;margin-right:4px;display:inline-block;}
+    @media (min-width:900px){
+      .two-col{grid-template-columns:1fr 1fr;}
+    }
+    .highlight{
+      background: linear-gradient(90deg,var(--accent) 0%, #ff8ec0 100%);
+      -webkit-background-clip:text;
+      -webkit-text-fill-color:transparent;
+    }
+    .timeline{
+      margin-top:0.25rem;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <div>
+        <div class="part-pill">AI Mastery Syllabus</div>
+        <h1>Deep Learning → Generative AI → LLM-Ops</h1>
+        <p class="subtitle">Three-part curated pathway: foundation, creative large language modeling, and production-grade operations. Ready for GitHub Pages, portfolio, and real-world deployment.</p>
+      </div>
+      <nav aria-label="main nav">
+        <ul class="nav-links">
+          <li><a href="#part1">Part 1: Deep Learning</a></li>
+          <li><a href="#part2">Part 2: Generative AI & LLM</a></li>
+          <li><a href="#part3">Part 3: LLM-Ops</a></li>
+          <li><a href="#resources">Resources</a></li>
+          <li><a href="#capstone">Capstone</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <!-- Part 1 -->
+    <section id="part1">
+      <div class="card">
+        <div class="badge">Part 1</div>
+        <h2>Deep Learning & Prerequisites to LLMs</h2>
+        <p>Weeks 1–6: Build the mathematical, architectural, and implementation foundation so that Transformers and LLMs feel natural—no black boxes, only understood systems.</p>
+
+        <div class="grid two-col">
+          <div class="card" style="background:rgba(124,92,255,0.05);">
+            <h3>Why It Matters</h3>
+            <p>LLMs are composed of deep neural components. Understanding optimization, activations, CNNs, and sequence modeling gives you interpretability, control, and debugging power.</p>
+          </div>
+          <div class="card" style="background:rgba(124,92,255,0.05);">
+            <h3>Weekly Timeline</h3>
+            <table>
+              <thead>
+                <tr>
+                  <th>Week</th>
+                  <th>Focus</th>
+                  <th>Deliverable</th>
+                  <th>Key Resource</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>1</td>
+                  <td>Python, NumPy & ML prerequisites</td>
+                  <td>Normalization pipeline + linear regression</td>
+                  <td><a href="https://developers.google.com/machine-learning/crash-course/prereqs-and-prework?utm_source=chatgpt.com">Google ML Crash Course</a></td>
+                </tr>
+                <tr>
+                  <td>2</td>
+                  <td>Gradient descent & backprop</td>
+                  <td>MLP with visualization of gradients</td>
+                  <td><a href="https://developers.google.com/machine-learning/crash-course/linear-regression/gradient-descent?utm_source=chatgpt.com">Gradient Descent module</a></td>
+                </tr>
+                <tr>
+                  <td>3</td>
+                  <td>Activations & initialization</td>
+                  <td>Compare ReLU/tanh convergence</td>
+                  <td><a href="http://neuralnetworksanddeeplearning.com/">Nielsen's Book</a>, <em>3Blue1Brown</em></td>
+                </tr>
+                <tr>
+                  <td>4</td>
+                  <td>Regularization & optimizers</td>
+                  <td>Tune dropout, weight decay, learning rate</td>
+                  <td><em>Hands-On Machine Learning</em> by Géron</td>
+                </tr>
+                <tr>
+                  <td>5</td>
+                  <td>CNNs</td>
+                  <td>Build ConvNet on CIFAR-10</td>
+                  <td><a href="https://www.coursera.org/learn/convolutional-neural-networks?utm_source=chatgpt.com">DeepLearning.AI CNN course</a></td>
+                </tr>
+                <tr>
+                  <td>6</td>
+                  <td>RNNs / LSTMs</td>
+                  <td>Character-level LSTM text generator</td>
+                  <td><a href="https://www.coursera.org/learn/sequence-models?utm_source=chatgpt.com">Sequence Models (DeepLearning.AI)</a></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <p class="small">Optional deep dives: matrix calculus for DL, vanishing/exploding gradients papers, and visual intuition from 3Blue1Brown.</p>
+      </div>
+    </section>
+
+    <!-- Part 2 -->
+    <section id="part2">
+      <div class="card">
+        <div class="badge">Part 2</div>
+        <h2>Generative AI & Large Language Models</h2>
+        <p>Weeks 7–14: Transition from representation to generation—build, tune, prompt, and deploy large language systems and creative models.</p>
+
+        <div class="grid two-col">
+          <div class="card">
+            <h3>Why It Matters</h3>
+            <p>Generative AI is the layer where models produce novel content. Understanding transformers, prompt design, instruction tuning, and few-shot reasoning unlocks LLM utility.</p>
+          </div>
+          <div class="card">
+            <h3>Weekly Timeline</h3>
+            <table>
+              <thead>
+                <tr>
+                  <th>Week</th>
+                  <th>Topic</th>
+                  <th>Project</th>
+                  <th>Core Resource</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>7</td>
+                  <td>Unsupervised / VAEs / GANs</td>
+                  <td>Train VAE / GAN on MNIST</td>
+                  <td>DeepLearning.AI Unsupervised module; Goodfellow's <em>Deep Learning</em></td>
+                </tr>
+                <tr>
+                  <td>8</td>
+                  <td>Diffusion Models</td>
+                  <td>Experiment with Hugging Face diffusers</td>
+                  <td><a href="https://huggingface.co/docs/diffusers/index?utm_source=chatgpt.com">Hugging Face Diffusers</a></td>
+                </tr>
+                <tr>
+                  <td>9</td>
+                  <td>Transformer Mechanics</td>
+                  <td>Mini Transformer block from scratch</td>
+                  <td><a href="https://arxiv.org/abs/1706.03762">Attention Is All You Need</a></td>
+                </tr>
+                <tr>
+                  <td>10</td>
+                  <td>Pretrained LLMs</td>
+                  <td>Feature extraction with BERT/GPT-2</td>
+                  <td>Hugging Face Models & Architecture docs</td>
+                </tr>
+                <tr>
+                  <td>11</td>
+                  <td>Fine-Tuning / Instruction Tuning</td>
+                  <td>Fine-tune GPT-2 on Q&A</td>
+                  <td><a href="https://www.coursera.org/specializations/generative-ai-engineering-with-llms?utm_source=chatgpt.com">Generative AI Engineering (DeepLearning.AI/HuggingFace)</a></td>
+                </tr>
+                <tr>
+                  <td>12</td>
+                  <td>Prompt Engineering & Chain-of-Thought</td>
+                  <td>Design reasoning prompts, few-shot templates</td>
+                  <td>Prompt engineering guides (e.g., Lakera, community blogs)</td>
+                </tr>
+                <tr>
+                  <td>13</td>
+                  <td>Agentic prompt chaining</td>
+                  <td>Build a multi-prompt agent (math/QA)</td>
+                  <td>LangChain starter guides + Hugging Face</td>
+                </tr>
+                <tr>
+                  <td>14</td>
+                  <td>Deploy & polish</td>
+                  <td>Deploy agent on Gradio / HF Spaces</td>
+                  <td><a href="https://www.coursera.org/projects/open-source-models-with-hugging-face?utm_source=chatgpt.com">Hugging Face Project</a></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <p class="small">Include few-shot scaffolding, self-consistency ensemble prompts, and data filtering to improve generation quality.</p>
+      </div>
+    </section>
+
+    <!-- Part 3 -->
+    <section id="part3">
+      <div class="card">
+        <div class="badge">Part 3</div>
+        <h2>LLM-Ops & Productionization</h2>
+        <p>Weeks 15–20: Turn your LLMs and agents into robust, versioned, safe, monitored, cost-aware systems in real environments.</p>
+
+        <div class="grid two-col">
+          <div class="card">
+            <h3>Core Philosophy</h3>
+            <p>LLM-Ops brings observability, governance, cost control, safety, and reproducibility—making living language models enterprise-grade and dependable.</p>
+          </div>
+          <div class="card">
+            <h3>Weekly Timeline</h3>
+            <table>
+              <thead>
+                <tr>
+                  <th>Week</th>
+                  <th>Focus</th>
+                  <th>Deliverable</th>
+                  <th>Resource</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>15</td>
+                  <td>LLM-Ops Lifecycle</td>
+                  <td>Prompt workflow backlog design</td>
+                  <td><a href="https://www.coursera.org/specializations/large-language-model-operations?utm_source=chatgpt.com">LLMOps Specialization (Duke)</a></td>
+                </tr>
+                <tr>
+                  <td>16</td>
+                  <td>Data/Fine-Tuning Pipelines</td>
+                  <td>Modular prompt+data pipeline with versioning</td>
+                  <td>Hugging Face LLM Course</td>
+                </tr>
+                <tr>
+                  <td>17</td>
+                  <td>PromptOps & Safety</td>
+                  <td>Guardrail wrappers, hallucination filters</td>
+                  <td>OpenAI Guardrails / Anthropic prompt safety</td>
+                </tr>
+                <tr>
+                  <td>18</td>
+                  <td>Evaluation & Monitoring</td>
+                  <td>Automated LLM-as-judge suite, misalignment alerts</td>
+                  <td>LangSmith + LangChain Evaluation</td>
+                </tr>
+                <tr>
+                  <td>19</td>
+                  <td>Versioning & Cost Ops</td>
+                  <td>Model A/B, cost/latency dashboard</td>
+                  <td>LLMOps specialization + OpenAI production docs</td>
+                </tr>
+                <tr>
+                  <td>20</td>
+                  <td>Deployment & Scaling</td>
+                  <td>Multi-agent live pipeline with logging</td>
+                  <td>Production best practices (OpenAI blog, Duke course)</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <p class="small">Build the ethical prompt-guard flywheel: Input → Prompt → Eval → Guardrail → Log → Iterate.</p>
+      </div>
+    </section>
+
+    <!-- Capstone -->
+    <section id="capstone">
+      <div class="card">
+        <div class="badge">Capstone</div>
+        <h2>Portfolio & Integration Project</h2>
+        <p>By Week 21–24, combine parts 1–3 into a deployable, observable, and versioned artifact. Examples:</p>
+        <ul>
+          <li>Retrieval-augmented storytelling / knowledge agent with prompt governance and live UI.</li>
+          <li>Multi-agent RL + LLM hybrid (e.g., instruction agent that adapts via feedback loops).</li>
+          <li>Full LLM-Ops dashboard: prompt version history + safety audits + cost curves + A/B serving.</li>
+        </ul>
+        <p>Deploy on: GitHub Pages, Hugging Face Spaces, Dockerized API (Flask/FastAPI), add README + test harness.</p>
+      </div>
+    </section>
+
+    <!-- Resources -->
+    <section id="resources">
+      <div class="card">
+        <div class="badge">Resources</div>
+        <h2>Canonical Links & Tools</h2>
+        <div class="grid two-col">
+          <div class="card">
+            <h3>Foundations</h3>
+            <ul class="resource-list">
+              <li><strong>Google ML Crash Course:</strong> https://developers.google.com/machine-learning/crash-course</li>
+              <li><strong>Nielsen’s Neural Networks Book:</strong> http://neuralnetworksanddeeplearning.com/</li>
+              <li><strong>3Blue1Brown Deep Learning Intuition:</strong> https://www.youtube.com/3blue1brown</li>
+              <li><strong>Hands-On ML (Géron):</strong> Book (practical TensorFlow/Keras)</li>
+            </ul>
+          </div>
+          <div class="card">
+            <h3>Generative & LLM</h3>
+            <ul class="resource-list">
+              <li><strong>DeepLearning.AI Generative AI with LLMs:</strong> https://www.coursera.org/learn/generative-ai-with-llms</li>
+              <li><strong>Generative AI Engineering with LLMs:</strong> https://www.coursera.org/specializations/generative-ai-engineering-with-llms</li>
+              <li><strong>Hugging Face Transformers Course:</strong> https://github.com/huggingface/course</li>
+              <li><strong>Hugging Face Diffusers:</strong> https://huggingface.co/docs/diffusers/index</li>
+              <li><strong>Transformer Paper:</strong> https://arxiv.org/abs/1706.03762</li>
+            </ul>
+          </div>
+        </div>
+        <div class="grid two-col" style="margin-top:1.5rem;">
+          <div class="card">
+            <h3>LLM-Ops & Eval</h3>
+            <ul class="resource-list">
+              <li><strong>LLMOps Specialization (Duke):</strong> https://www.coursera.org/specializations/large-language-model-operations</li>
+              <li><strong>LangChain & LangSmith:</strong> https://python.langchain.com/docs/ and https://www.langchain.com/langsmith</li>
+              <li><strong>OpenAI Prompt/Safety Guides:</strong> https://platform.openai.com/docs/guides/prompt-engineering</li>
+              <li><strong>Anthropic Prompt Safety & Alignment:</strong> (search "Anthropic prompt engineering overview")</li>
+            </ul>
+          </div>
+          <div class="card">
+            <h3>Tooling & Extras</h3>
+            <ul class="resource-list">
+              <li><strong>Stable Baselines3 (RL):</strong> https://stable-baselines3.readthedocs.io/</li>
+              <li><strong>OpenAI Gym / Gymnasium:</strong> https://gymnasium.farama.org/</li>
+              <li><strong>GitHub for Portfolio:</strong> versioned code + README + CI</li>
+              <li><strong>Hugging Face Spaces:</strong> Deploy demos with Gradio</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <div class="footer">
+      <div>
+        <div><strong>Created by:</strong> Ashwin (customize your name/link)</div>
+        <div class="small">Drop this HTML as <code>index.html</code> in your GitHub Pages repo. Edit links or theme to match your branding.</div>
+      </div>
+      <div>
+        <div><span class="pill">Timeline</span> Weeks 1–6: Foundation / 7–14: LLM & Generative / 15–20: Ops / 21–24: Capstone</div>
+        <div class="small">Powered by your ambition. © 2025</div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
