@@ -6,59 +6,422 @@
   <title>Transformers - A Mathematical Approach | Ashwin Koodathil</title>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet"/>
   <link rel="stylesheet" href="../style.css" />
+  <!-- MathJax for equations -->
+  <script>
+    window.MathJax = { tex: {inlineMath: [['$','$'], ['\\(','\\)']]}};
+  </script>
+  <script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+  <style>
+    .toc { background: #fff; border: 1px solid #eee; border-radius: 12px; padding: 16px; max-width: 320px; position: sticky; top: 20px; height: fit-content; box-shadow: 0 6px 18px rgba(0,0,0,0.06); }
+    .toc h3 { margin-bottom: 8px; }
+    .toc ol { margin-left: 18px; }
+    .grid { display: grid; grid-template-columns: 320px 1fr; gap: 24px; align-items: start; }
+    .section h2, .section h3 { margin-top: 24px; }
+    .badge { display:inline-block; border:1px solid #ddd; border-radius: 999px; padding: 2px 10px; font-size: 12px; margin-right: 6px; }
+    .code { background:#0f1522; color:#f3f7ff; padding:14px 16px; border-radius:12px; overflow:auto; font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace; font-size: 0.9rem; }
+    .note { background:#fff; border-left:4px solid #6c63ff; padding:12px 14px; border-radius:8px; box-shadow: 0 4px 12px rgba(0,0,0,0.05); }
+    .table { width:100%; border-collapse: collapse; overflow:hidden; border-radius:12px; }
+    .table th, .table td { border-bottom:1px solid #eee; padding:10px 12px; text-align:left; vertical-align: top; }
+    .table thead th { background:#fafafa; }
+    .pill { background:#eef4ff; color:#2b4cff; border-radius:8px; padding:2px 8px; font-size: 12px; }
+    .small { font-size: 0.95rem; color:#444; }
+    details { background:#fff; border:1px solid #eee; border-radius:10px; padding: 8px 12px; margin: 10px 0; }
+    summary { cursor:pointer; font-weight:600; }
+    .hero-sub { opacity:0.9; }
+    @media (max-width: 980px){ .grid{ grid-template-columns: 1fr; } .toc{ position:relative; top:auto; max-width:100%; } }
+  </style>
 </head>
 <body>
   <header>
     <div class="header-bg">
-      <h1>Transformers - A Mathematical Approach</h1>
+      <h1>Transformers — A Mathematical, Hands‑On Study Note</h1>
+      <p class="hero-sub">From first principles to modern LLMs. Built for quick revisits and deep dives.</p>
       <nav>
-        <a href="index.html">← Back to Learnings</a>
+        <a href="../index.html">← Back to Home</a>
       </nav>
     </div>
   </header>
 
-  <main>
-    <section class="section">
-      <h2>Overview</h2>
-      <p>
-        This note is a deep dive into the Transformer architecture through a mathematical lens. 
-        I'm referencing the original Google paper <a href="https://arxiv.org/abs/1706.03762" target="_blank">"Attention is All You Need"</a> 
-        to demystify how Transformers work under the hood.
-      </p>
-      <p>
-        My goal is to simplify the Transformer model by breaking it down into smaller, logical, and mathematically grounded chunks. 
-        This helps me (and hopefully others) grasp the power and elegance behind the architecture that drives today's leading AI models.
-      </p>
-    </section>
+  <main class="grid">
+    <!-- TABLE OF CONTENTS -->
+    <aside class="toc" aria-label="Table of Contents">
+      <h3>Table of Contents</h3>
+      <ol>
+        <li><a href="#overview">Overview</a></li>
+        <li><a href="#prereqs">Prerequisites</a></li>
+        <li><a href="#foundations">Part I — Foundations & Intuition</a></li>
+        <li><a href="#math">Part II — Core Math: Attention</a></li>
+        <li><a href="#blocks">Part II — Building Blocks</a></li>
+        <li><a href="#training">Part II — Objectives & Training</a></li>
+        <li><a href="#scaling">Part II — Scaling & Efficiency</a></li>
+        <li><a href="#examples">Part IV — Code Examples</a></li>
+        <li><a href="#model-zoo">Part III — Model Zoo & Architectures</a></li>
+        <li><a href="#eval">Evaluation & GPT Case Study</a></li>
+        <li><a href="#cheatsheet">Cheat Sheet</a></li>
+        <li><a href="#refs">References</a></li>
+      </ol>
+    </aside>
 
-    <section class="section">
-      <h3>Key Concepts</h3>
-      <ul>
-        <li><strong>Self-Attention:</strong> Weighted influence of each token on the others in the same sequence</li>
-        <li><strong>Multi-Head Attention:</strong> Multiple attention mechanisms run in parallel to capture diverse relationships</li>
-        <li><strong>Positional Encoding:</strong> Injects order information using sine and cosine functions</li>
-        <li><strong>Encoder-Decoder Architecture:</strong> Encodes inputs and decodes them into outputs step-by-step</li>
-        <li><strong>Layer Normalization:</strong> Helps with stability and faster convergence</li>
-      </ul>
-    </section>
+    <section>
+      <!-- OVERVIEW -->
+      <section class="section" id="overview">
+        <h2>Overview</h2>
+        <p>
+          This note is a deep dive into the Transformer architecture through a mathematical lens. 
+          We draw on <em>Attention Is All You Need</em> (Vaswani et al., 2017) and your provided study guide outline (intuition → math → implementations),
+          then connect it to today’s large language models (LLMs).
+        </p>
+      </section>
 
-    <section class="section">
-      <h3>Applications</h3>
-      <p>
-        Transformers have revolutionized AI applications such as:
-      </p>
-      <ul>
-        <li>Language Modeling (BERT, GPT)</li>
-        <li>Machine Translation</li>
-        <li>Text Summarization</li>
-        <li>Computer Vision (ViT)</li>
-        <li>Protein Folding (AlphaFold)</li>
-      </ul>
+      <!-- PREREQUISITES -->
+      <section class="section" id="prereqs">
+        <h2>Prerequisites</h2>
+        <ul>
+          <li><span class="badge">Linear Algebra</span> vectors, matrices, dot products, eigendecomposition (basic)</li>
+          <li><span class="badge">Probability</span> random variables, expectations, softmax as a Gibbs distribution</li>
+          <li><span class="badge">Optimization</span> gradient descent, Adam/AdamW, learning‑rate schedulers</li>
+          <li><span class="badge">Neural Nets</span> embeddings, residual connections, normalization, dropout</li>
+          <li><span class="badge">Text Basics</span> tokenization (BPE/WordPiece/Unigram), subword vocabularies</li>
+        </ul>
+        <details><summary>Quick refresher: softmax & cross‑entropy</summary>
+          <div class="small">
+            Softmax: $\mathrm{softmax}(z)_i = \frac{e^{z_i}}{\sum_j e^{z_j}}$. Cross‑entropy for target $y$ and logits $z$: $\mathcal{L} = -\sum_i y_i \log \mathrm{softmax}(z)_i$.
+          </div>
+        </details>
+      </section>
+
+      <!-- FOUNDATIONS -->
+      <section class="section" id="foundations">
+        <h2>Part I — Foundational Concepts & Intuition</h2>
+        <h3>1.1 What is a Transformer? Why the name?</h3>
+        <p>
+          A <em>Transformer</em> is a neural architecture for mapping an input sequence to an output sequence (e.g., translation). The term reflects
+          sequence <em>transformation</em>, not electrical induction. The breakthrough insight: ditch recurrence; rely on <strong>attention</strong> to relate tokens.
+        </p>
+        <h3>1.2 Why not RNNs/LSTMs?</h3>
+        <p>
+          RNNs pass information step‑by‑step; LSTMs help with gates but remain sequential. Transformers let each token look at <em>all</em> tokens in parallel
+          via attention, removing the training bottleneck and improving long‑range reasoning.
+        </p>
+        <h3>1.3 Core Principle: Attention & Parallel Access</h3>
+        <p>
+          Self‑attention gives each token direct, content‑based access to other tokens. One layer can aggregate global context in a single hop. The trade‑off
+          is quadratic cost in sequence length per layer, later mitigated by sparse/linear attention and FlashAttention.
+        </p>
+        <h3>RNN vs LSTM vs Transformer</h3>
+        <table class="table">
+          <thead><tr><th>Feature</th><th>RNN</th><th>LSTM</th><th>Transformer</th></tr></thead>
+          <tbody>
+            <tr><td>Processing</td><td>Sequential</td><td>Sequential (gated)</td><td>Parallel per layer</td></tr>
+            <tr><td>Dependency Range</td><td>Short (vanishing grads)</td><td>Longer</td><td>Long (global attention)</td></tr>
+            <tr><td>Train Throughput</td><td>Low</td><td>Low‑ish</td><td>High (GPU‑friendly)</td></tr>
+            <tr><td>Per‑layer Complexity</td><td>$\mathcal{O}(n)$</td><td>$\mathcal{O}(n)$</td><td>$\mathcal{O}(n^2)$ attention</td></tr>
+            <tr><td>Modern Use</td><td>Niche</td><td>Niche</td><td>Dominant</td></tr>
+          </tbody>
+        </table>
+      </section>
+
+      <!-- MATH -->
+      <section class="section" id="math">
+        <h2>Part II — Core Math: Scaled Dot‑Product Attention</h2>
+        <p>Given input matrix $X \in \mathbb{R}^{n\times d}$, project to queries, keys, values:</p>
+        <p>$Q = XW_Q,\; K = XW_K,\; V = XW_V$ where $W_Q, W_K, W_V \in \mathbb{R}^{d\times d_k}$.</p>
+        <p>Attention weights and output:</p>
+        <p>
+          $A = \mathrm{softmax}\!\left(\frac{QK^\top}{\sqrt{d_k}} + M\right)$, &nbsp; $\mathrm{Attn}(Q,K,V) = AV$.
+        </p>
+        <p class="small">
+          $M$ is a mask (e.g., $-\infty$ on disallowed positions for causal decoding). The $\sqrt{d_k}$ term prevents overly peaky softmax when dimensions grow.
+        </p>
+      </section>
+
+      <!-- BLOCKS -->
+      <section class="section" id="blocks">
+        <h2>Part II — Building Blocks</h2>
+        <h3>1) Multi‑Head Attention (MHA)</h3>
+        <p>
+          Split $d$ into $h$ heads of size $d_h$. Compute attention per head, then concatenate and project:
+          $\mathrm{MHA}(X)= \mathrm{Concat}(\text{head}_1,\ldots,\text{head}_h)W_O$.
+        </p>
+        <h3>2) Positional Information</h3>
+        <ul>
+          <li><strong>Sinusoidal</strong> (original): $PE_{pos,2i}=\sin\!\big(pos/10000^{2i/d}\big)$, $PE_{pos,2i+1}=\cos(\cdot)$</li>
+          <li><strong>Learned</strong>: pos‑embeddings are parameters</li>
+          <li><strong>Rotary (RoPE)</strong>: rotates $Q,K$ in complex plane; preserves relative offsets</li>
+        </ul>
+        <h3>3) Feed‑Forward Network (FFN)</h3>
+        <p>Position‑wise MLP applied to each token: $\mathrm{FFN}(x)=\sigma(xW_1+b_1)W_2+b_2$. Often uses GELU and expansion ratio $\approx 4$.</p>
+        <h3>4) Residuals & (Pre)Norm</h3>
+        <p>Modern stacks prefer <strong>Pre‑Norm</strong>: $x\!\leftarrow\! x+\mathrm{MHA}(\mathrm{LN}(x))$; then $x\!\leftarrow\! x+\mathrm{FFN}(\mathrm{LN}(x))$ for training stability.</p>
+        <h3>5) Encoder / Decoder Patterns</h3>
+        <ul>
+          <li><span class="pill">Encoder‑Only</span> (e.g., BERT): bidirectional self‑attention for understanding tasks.</li>
+          <li><span class="pill">Decoder‑Only</span> (e.g., GPT): causal self‑attention for generation.</li>
+          <li><span class="pill">Encoder‑Decoder</span> (e.g., T5): encoder builds representation; decoder attends to encoder via cross‑attention.</li>
+        </ul>
+        <h3>6) Masking</h3>
+        <p><strong>Causal masks</strong> prevent looking ahead ($j>i$); <strong>padding masks</strong> ignore empty tokens.</p>
+      </section>
+
+      <!-- TRAINING -->
+      <section class="section" id="training">
+        <h2>Part II — Objectives & Training</h2>
+        <ul>
+          <li><strong>CLM</strong> (Causal LM): predict next token. Loss: cross‑entropy over vocabulary.</li>
+          <li><strong>MLM</strong> (Masked LM): mask random tokens; predict the originals (BERT).</li>
+          <li><strong>Seq2Seq</strong>: teacher‑forced decoding conditioned on encoder outputs (T5, translation).</li>
+        </ul>
+        <details><summary>Optimization tips</summary>
+          <ul class="small">
+            <li>Use <strong>AdamW</strong> with weight decay; <strong>cosine</strong> or <strong>linear</strong> warmup/decay LR schedules.</li>
+            <li><strong>BF16</strong>/FP16 mixed precision for throughput; gradient clipping to tame spikes.</li>
+            <li>Batch by <em>tokens</em> (not sequences) to maximize utilization; use gradient accumulation.</li>
+          </ul>
+        </details>
+      </section>
+
+      <!-- SCALING & EFFICIENCY -->
+      <section class="section" id="scaling">
+        <h2>Part II — Scaling & Efficiency</h2>
+        <ul>
+          <li><strong>Complexity</strong>: vanilla attention is $\mathcal{O}(n^2)$ in sequence length.</li>
+          <li><strong>KV caching (decoder‑only)</strong>: cache keys/values from prior tokens to avoid recomputation during autoregressive generation; essential for chat.</li>
+          <li><strong>FlashAttention</strong>: IO‑aware tiled attention; reduces memory movement, exact output.</li>
+          <li><strong>Sparse / Linear</strong> variants: Longformer/BigBird (sparse), Performer (kernel), Linformer (low‑rank).</li>
+          <li><strong>MoE</strong> (Mixture‑of‑Experts): route tokens to expert FFNs; more parameters, similar compute (e.g., Switch, Mixtral).</li>
+          <li><strong>Scaling laws</strong>: balance model size, data size, and training compute (Chinchilla‑style insights).</li>
+        </ul>
+      </section>
+
+      <!-- CODE EXAMPLES -->
+      <section class="section" id="examples">
+        <h2>Part IV — Code Examples</h2>
+        <h3>1) Minimal Scaled Dot‑Product Attention (PyTorch)</h3>
+        <pre class="code"><code>import torch
+import torch.nn.functional as F
+
+def scaled_dot_product_attention(Q, K, V, mask=None):
+    d_k = Q.size(-1)
+    scores = (Q @ K.transpose(-2, -1)) / (d_k ** 0.5)
+    if mask is not None:
+        scores = scores.masked_fill(mask == 0, float('-inf'))
+    A = F.softmax(scores, dim=-1)
+    return A @ V
+
+B, T, d, h = 2, 8, 64, 4
+x = torch.randn(B, T, d)
+Wq = torch.nn.Linear(d, d, bias=False)
+Wk = torch.nn.Linear(d, d, bias=False)
+Wv = torch.nn.Linear(d, d, bias=False)
+Q, K, V = Wq(x), Wk(x), Wv(x)
+# split into heads
+Q = Q.view(B, T, h, d//h).transpose(1, 2)  # (B,h,T,d_h)
+K = K.view(B, T, h, d//h).transpose(1, 2)
+V = V.view(B, T, h, d//h).transpose(1, 2)
+attn_out = scaled_dot_product_attention(Q, K, V)  # (B,h,T,d_h)
+out = attn_out.transpose(1, 2).contiguous().view(B, T, d)</code></pre>
+
+        <h3>2) Tiny Transformer Block</h3>
+        <pre class="code"><code>import torch
+from torch import nn
+
+class TransformerBlock(nn.Module):
+    def __init__(self, d_model=256, n_heads=4, d_ff=1024, p_drop=0.1):
+        super().__init__()
+        self.ln1 = nn.LayerNorm(d_model)
+        self.attn = nn.MultiheadAttention(d_model, n_heads, batch_first=True)
+        self.ln2 = nn.LayerNorm(d_model)
+        self.ff = nn.Sequential(
+            nn.Linear(d_model, d_ff),
+            nn.GELU(),
+            nn.Linear(d_ff, d_model)
+        )
+        self.drop = nn.Dropout(p_drop)
+
+    def forward(self, x, attn_mask=None):
+        # Pre-Norm
+        a, _ = self.attn(self.ln1(x), self.ln1(x), self.ln1(x), attn_mask=attn_mask)
+        x = x + self.drop(a)
+        x = x + self.drop(self.ff(self.ln2(x)))
+        return x</code></pre>
+
+        <details><summary>3) Causal mask snippet</summary>
+          <pre class="code"><code>def causal_mask(T):
+    # 1 where allowed, 0 where masked
+    import torch
+    return torch.tril(torch.ones(T, T)).unsqueeze(0)  # (1,T,T)</code></pre>
+        </details>
+
+        <h3>4) Sinusoidal <code>PositionalEncoding</code></h3>
+        <pre class="code"><code>import torch, math
+from torch import nn
+
+class PositionalEncoding(nn.Module):
+    """Sinusoidal encoding added to token embeddings."""
+    def __init__(self, d_model: int, max_len: int = 10000):
+        super().__init__()
+        pe = torch.zeros(max_len, d_model)
+        position = torch.arange(0, max_len, dtype=torch.float).unsqueeze(1)
+        div_term = torch.exp(torch.arange(0, d_model, 2).float() * (-math.log(10000.0) / d_model))
+        pe[:, 0::2] = torch.sin(position * div_term)
+        pe[:, 1::2] = torch.cos(position * div_term)
+        self.register_buffer('pe', pe)  # not a parameter
+
+    def forward(self, x):  # x: (B, T, d_model)
+        T = x.size(1)
+        return x + self.pe[:T, :]
+</code></pre>
+
+        <h3>5) From‑scratch <code>MultiHeadAttention</code></h3>
+        <pre class="code"><code>import torch
+import torch.nn.functional as F
+from torch import nn
+
+class MultiHeadAttention(nn.Module):
+    def __init__(self, d_model: int, num_heads: int):
+        super().__init__()
+        assert d_model % num_heads == 0
+        self.h = num_heads
+        self.d_h = d_model // num_heads
+        self.qkv = nn.Linear(d_model, 3 * d_model)
+        self.proj = nn.Linear(d_model, d_model)
+
+    def forward(self, x, mask=None):  # x: (B,T,d)
+        B, T, d = x.size()
+        qkv = self.qkv(x)  # (B,T,3d)
+        qkv = qkv.view(B, T, 3, self.h, self.d_h).permute(2,0,3,1,4)  # (3,B,h,T,d_h)
+        Q, K, V = qkv[0], qkv[1], qkv[2]
+        scores = (Q @ K.transpose(-2, -1)) / (self.d_h ** 0.5)  # (B,h,T,T)
+        if mask is not None:
+            scores = scores.masked_fill(mask == 0, float('-inf'))
+        A = F.softmax(scores, dim=-1)
+        H = A @ V  # (B,h,T,d_h)
+        H = H.transpose(1,2).contiguous().view(B, T, d)  # concat heads
+        return self.proj(H)
+</code></pre>
+      </section>
+
+      <!-- MODEL ZOO -->
+      <section class="section" id="model-zoo">
+        <h2>Part III — Model Zoo & Architectures</h2>
+        <h3>Architectural Spectrum</h3>
+        <table class="table">
+          <thead><tr><th>Architecture</th><th>Primary Use</th><th>Representative Models</th><th>Key Trait</th></tr></thead>
+          <tbody>
+            <tr><td>Encoder‑Decoder</td><td>Seq‑to‑Seq (translate, summarise)</td><td>Original Transformer, T5, BART</td><td>Cross‑attention from decoder to encoder</td></tr>
+            <tr><td>Encoder‑Only</td><td>Understanding, embeddings</td><td>BERT, RoBERTa</td><td>Bidirectional self‑attention</td></tr>
+            <tr><td>Decoder‑Only</td><td>Autoregressive generation</td><td>GPT family, LLaMA, Mistral/Mixtral, Gemma, Phi‑3</td><td>Causal masks + KV cache</td></tr>
+          </tbody>
+        </table>
+
+        <h3>Selected Families</h3>
+        <table class="table">
+          <thead>
+            <tr><th>Family</th><th>Type</th><th>Notable Traits</th><th>Typical Use</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>GPT (OpenAI)</td>
+              <td>Decoder‑only</td>
+              <td>Causal LM, strong instruction‑following via post‑training (SFT/RLHF)</td>
+              <td>General generation, agents, coding assistance</td>
+            </tr>
+            <tr>
+              <td>BERT</td>
+              <td>Encoder‑only</td>
+              <td>MLM pretraining; great for classification, retrieval encoders</td>
+              <td>NLP understanding, embeddings</td>
+            </tr>
+            <tr>
+              <td>T5</td>
+              <td>Encoder‑Decoder</td>
+              <td>"Text‑to‑Text" framing unifies tasks; span corruption pretraining</td>
+              <td>Seq2Seq tasks, translation, summarization</td>
+            </tr>
+            <tr>
+              <td>LLaMA / LLaMA‑2 / LLaMA‑3</td>
+              <td>Decoder‑only</td>
+              <td>Open weights (Meta), efficient training, strong small/medium models</td>
+              <td>Research, fine‑tuning, on‑prem deployments</td>
+            </tr>
+            <tr>
+              <td>Mistral / Mixtral (MoE)</td>
+              <td>Decoder‑only (MoE variants)</td>
+              <td>Sliding‑window attention; MoE routes to experts</td>
+              <td>Low‑latency apps, cost‑aware serving</td>
+            </tr>
+            <tr>
+              <td>Gemma</td>
+              <td>Decoder‑only</td>
+              <td>Google family, compact open models</td>
+              <td>Lightweight on‑device/server use</td>
+            </tr>
+            <tr>
+              <td>Phi‑2 / Phi‑3</td>
+              <td>Decoder‑only</td>
+              <td>Data curation focus; strong quality per parameter</td>
+              <td>Edge and constrained environments</td>
+            </tr>
+            <tr>
+              <td>ViT</td>
+              <td>Encoder‑only (vision)</td>
+              <td>Patches as tokens; attention over image patches</td>
+              <td>Image classification, vision backbones</td>
+            </tr>
+          </tbody>
+        </table>
+        <p class="small">Note: Exact parameter counts and training specifics vary by release; the tables highlight architecture patterns.</p>
+      </section>
+
+      <!-- EVALUATION -->
+      <section class="section" id="eval">
+        <h2>Evaluation & GPT Case Study</h2>
+        <ul>
+          <li><strong>Language modeling</strong>: Perplexity (lower is better)</li>
+          <li><strong>Generation quality</strong>: BLEU (translation), ROUGE (summarization), exact‑match/F1 (QA)</li>
+          <li><strong>Instruction following</strong>: human evals, preference models, task‑specific scores</li>
+          <li><strong>Latency/Throughput</strong>: tokens/sec, time‑to‑first‑token, memory footprint</li>
+        </ul>
+        <h3>Case Study — Decoder‑only GPT</h3>
+        <ul>
+          <li>Objective: causal LM (next‑token prediction) with <em>masked</em> self‑attention.</li>
+          <li>Serving: KV cache to avoid recomputing past keys/values across turns.</li>
+          <li>Post‑training: SFT on human instructions, preference optimization (RLHF/DPO) for alignment.</li>
+        </ul>
+      </section>
+
+      <!-- CHEAT SHEET -->
+      <section class="section" id="cheatsheet">
+        <h2>Cheat Sheet</h2>
+        <ul>
+          <li>Self‑Attention: $A=\mathrm{softmax}((QK^\top)/\sqrt{d_k}+M)$; Output $=AV$</li>
+          <li>Block order (Pre‑Norm): $x \leftarrow x+\mathrm{MHA}(\mathrm{LN}(x))$; then $x \leftarrow x+\mathrm{FFN}(\mathrm{LN}(x))$</li>
+          <li>Decoder causal mask: forbid $j>i$</li>
+          <li>Common FFN ratio: $d_{ff} \approx 4d_{model}$</li>
+          <li>Optimization: AdamW + warmup → cosine/linear decay; clip grads</li>
+        </ul>
+      </section>
+
+      <!-- REFERENCES -->
+      <section class="section" id="refs">
+        <h2>References</h2>
+        <ol>
+          <li>Vaswani et al. 2017: <a href="https://arxiv.org/abs/1706.03762" target="_blank" rel="noopener">Attention Is All You Need</a></li>
+          <li>Press et al. 2021: Train Short, Test Long (length generalization)</li>
+          <li>Dao et al. 2022: FlashAttention (IO‑aware attention)</li>
+          <li>Beltagy et al. 2020: Longformer; Katharopoulos et al. 2020: Performer; Wang et al. 2020: Linformer</li>
+          <li>Dosovitskiy et al. 2020: Vision Transformer (ViT)</li>
+        </ol>
+      </section>
     </section>
   </main>
 
-  <footer>
-    <p>&copy; 2025 Ashwin Koodathil. All rights reserved.</p>
+  <footer class="section" style="text-align:center; padding: 24px 16px;">
+    <p class="small">© <span id="yr"></span> Ashwin Koodathil • Built with math, vibes, and coffee.</p>
   </footer>
+
+  <script>
+    document.getElementById('yr').textContent = new Date().getFullYear();
+  </script>
 </body>
 </html>
