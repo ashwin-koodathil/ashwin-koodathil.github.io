@@ -1,158 +1,364 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Ashwin Koodathil - Data Scientist</title>
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Ashwin Koodathil — Projects, Articles & Learning</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
   <header>
     <div class="header-bg">
-      <div class="profile-picture">
-        <img src="images/profile_picture.JPG" alt="Ashwin Koodathil - Data Scientist">
+      <div class="hero">
+        <div class="profile-picture">
+          <img src="images/profile_picture.JPG" alt="Ashwin Koodathil" />
+        </div>
+        <div>
+          <h1>Ashwin Koodathil</h1>
+          <p class="tagline">Data Scientist · Generative AI & LLM-Ops · Optimization | Python · Spark · Polars · Databricks · Azure/GCP</p>
+          <div class="buttons">
+            <a class="btn" href="#projects">Projects</a>
+            <a class="btn" href="#articles">Articles</a>
+            <a class="btn" href="#learning">Learning Notes</a>
+            <a class="btn" href="#certs">Certifications</a>
+            <a class="btn" href="#skills">Tech Stack</a>
+            <a class="btn" href="#contact">Contact</a>
+          </div>
+        </div>
       </div>
-      <h1>Ashwin Koodathil</h1>
-      <nav>
-        <a href="#summary">Summary</a>
-        <a href="#experience">Experience</a>
-        <a href="#education">Education</a>
-        <a href="#certifications">Certifications</a>
-        <a href="#skills">Skills</a>
-        <a href="learnings/index.html" target="_blank">Learning Notes</a>
-      </nav>
     </div>
   </header>
 
   <main>
-    <!-- Contact Section -->
-    <section id="contact" class="section section-contact">
-      <p>📞 +91 917-964-3031 | 📧 kashwinofficial@gmail.com</p>
-      <p>
-        <a href="https://linkedin.com/in/ashwin-koodathil/" target="_blank">LinkedIn</a> |
-        <a href="https://github.com/ashwin951" target="_blank">GitHub</a>
-      </p>
-    </section>
-
-    <!-- Professional Summary -->
+    <!-- Summary -->
     <section id="summary" class="section">
       <h2>Professional Summary</h2>
-      <p>
-        Senior Data Scientist at MathCo, leading key initiatives with almost 6 years of expertise in the CPG and utilities realms.
-        I specialize in product life cycles, customer engagement, and supply chain optimization while diving deep into the world of machine learning and generative AI.
-      </p>
+      <p class="sub">Lead Data Scientist specialized in MLOps, forecasting & optimization, and NLP/embeddings with 6+ years across CPG and utilities. I ship end-to-end systems in Python, SQL, and PySpark on Databricks/Azure/GCP—covering data pipelines, modeling, evaluation, and LLM-Ops. Currently exploring agentic workflows and generative AI for enterprise use-cases.</p>
     </section>
 
-    <!-- Experience as a Timeline Journey -->
-    <section id="experience" class="section">
-      <h2>Experience</h2>
-      <div class="timeline">
-        <!--Timeline Item: Tiger Analytics-->
-        <div class="timeline-item right">
-          <div class="timeline-content">
-            <h3>
-              Tiger Analytics
-            </h3>
-              <span class="date">
-                March 2025 - To Present
-              </span>
-            <p><strong>Lead Data Scientist</strong> | Bengaluru, Karnataka</p>
-            <ul>
-              <li>
-                Working on end-to-end life cycle of a machine learning project
-              </li>
-            </ul>
+    <!-- Projects -->
+    <section id="projects" class="section">
+      <div class="header-action">
+        <h2>Projects</h2>
+        <a href="#skills">see tech stack →</a>
+      </div>
+
+      <div class="grid two">
+        <div class="card">
+          <h3>MLOps Observability Platform</h3>
+          <p class="sub">End-to-end monitoring for model lifecycle, eval workflows, drift & data quality, plus SDK and reusable report templates.</p>
+          <div class="badges">
+            <span class="badge">Databricks</span><span class="badge">Spark 4.0</span><span class="badge">Polars</span><span class="badge">MLflow</span><span class="badge">Python</span>
           </div>
         </div>
-        <!-- Timeline Item: MathCo -->
-        <div class="timeline-item left">
-          <div class="timeline-content">
-            <h3>MathCo - MathCo</h3>
-            <span class="date">Jan 2023 – March 2025</span>
-            <p><strong>Senior Data Scientist</strong> | Bengaluru, Karnataka</p>
-            <ul>
-              <li>Led a transformative initiative for a major Canadian retailer with demand forecasting, shelf space optimization, and product grouping.</li>
-              <li>Built a Gradient Boosting model with PySpark on Databricks-Azure achieving a 12% MAPE.</li>
-              <li>Engineered a custom MILP algorithm that boosted shelf occupancy from 70% to 99% while slashing runtime from 8 hours to 20 minutes.</li>
-              <li>Crafted a Prod2Vec model using Word2Vec and Agglomerative Clustering to refine product clusters.</li>
-            </ul>
+
+        <div class="card">
+          <h3>Retail Forecasting & Shelf Optimization</h3>
+          <p class="sub">Store-level forecasting and planogram optimization combining ML + MILP for practical replenishment decisions.</p>
+          <div class="badges">
+            <span class="badge">PySpark</span><span class="badge">Databricks</span><span class="badge">Azure</span><span class="badge">Gradient Boosting</span><span class="badge">PuLP/Gurobi</span>
           </div>
         </div>
-        <!-- Timeline Item: Convertcart -->
-        <div class="timeline-item right">
-          <div class="timeline-content">
-            <h3>Convertcart</h3>
-            <span class="date">Sep 2021 – Dec 2022</span>
-            <p><strong>Data Scientist</strong> | Bengaluru, Karnataka</p>
-            <ul>
-              <li>Implemented and deployed a customer segmentation model in GCP using cutting-edge clustering techniques.</li>
-              <li>Developed cluster explainability metrics that powered personalized marketing and boosted engagement.</li>
-            </ul>
+
+        <div class="card">
+          <h3>Product Embeddings & Substitutability</h3>
+          <p class="sub">Prod2Vec from baskets + attributes; cluster refinement for substitutable item groups and recommendations.</p>
+          <div class="badges">
+            <span class="badge">Word2Vec</span><span class="badge">Gensim</span><span class="badge">PySpark</span><span class="badge">Clustering</span>
           </div>
         </div>
-        <!-- Timeline Item: Vanilla Networks -->
-        <div class="timeline-item left">
-          <div class="timeline-content">
-            <h3>Vanilla Networks Pvt Ltd</h3>
-            <span class="date">May 2020, Aug 2021</span>
-            <p><strong>Data Scientist</strong> | Kochi, Kerala</p>
-            <ul>
-              <li>Designed a high-accuracy water leak detection model using XGBoost and PySpark for a UK utility.</li>
-              <li>Reduced false alarms by 23% and optimized resource allocation in water management.</li>
-            </ul>
+
+        <div class="card">
+          <h3>Anomaly & Drift Detection</h3>
+          <p class="sub">Data quality, statistical drift, performance drift diagnostics, and explainability-ready evaluation suites.</p>
+          <div class="badges">
+            <span class="badge">Polars</span><span class="badge">SciPy</span><span class="badge">Evidently</span><span class="badge">LangChain Eval</span>
           </div>
         </div>
-        <!-- Timeline Item: Teknuance Info Solutions -->
-        <div class="timeline-item right">
-          <div class="timeline-content">
-            <h3>Teknuance Info Solutions Pvt Ltd</h3>
-            <span class="date">Jan 2019, Mar 2020</span>
-            <p><strong>Research & Developer, Machine Learning</strong> | Chennai, TamilNadu</p>
-            <ul>
-              <li>Developed a search-driven analytics tool that translated natural language queries into Python for dynamic data visualization.</li>
-              <li>Created a chart recommendation system to simplify complex data insights.</li>
-            </ul>
+
+        <div class="card">
+          <h3>LLM Agents & RAG Evaluations</h3>
+          <p class="sub">Agent graphs with routing, memory, and tools; LLM-as-judge + code eval; cost/latency and guardrails.</p>
+          <div class="badges">
+            <span class="badge">LangChain</span><span class="badge">Hugging Face</span><span class="badge">OpenAI</span><span class="badge">Vector DB</span>
+          </div>
+        </div>
+
+        <div class="card">
+          <h3>Customer Segmentation (Marketing)</h3>
+          <p class="sub">Deployed customer clustering and explainability for targeted marketing in e-commerce & CPG contexts.</p>
+          <div class="badges">
+            <span class="badge">GCP</span><span class="badge">K-Means</span><span class="badge">Hierarchical</span><span class="badge">Explainability</span>
+          </div>
+        </div>
+
+        <div class="card">
+          <h3>Water Leak Detection (Utilities)</h3>
+          <p class="sub">Leak alarm modeling pipeline improving signal quality and operational response for a UK utility.</p>
+          <div class="badges">
+            <span class="badge">XGBoost</span><span class="badge">PySpark</span><span class="badge">Python</span>
+          </div>
+        </div>
+
+        <div class="card">
+          <h3>Search-Driven Analytics & Chart Recommendation</h3>
+          <p class="sub">Natural-language to Python visualizations and an auto chart-reco engine for faster BI workflows.</p>
+          <div class="badges">
+            <span class="badge">NLP</span><span class="badge">Python</span><span class="badge">Flask</span><span class="badge">Visualization</span>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- Education Section -->
-    <section id="education" class="section">
-      <h2>Education</h2>
-      <div class="education-item">
-        <h3>Indian Institute of Science Education and Research, Bhopal, MP</h3>
-        <span class="date">August 2018</span>
-        <p>Bachelor of Science and Master of Science in Mathematics</p>
-        <p><em>Relevant Coursework:</em> Data Structures and Algorithms, Probability & Statistics, Linear Algebra, Graph Theory</p>
-        <p><em>Master Thesis:</em> Research on algebraic graph theory and graph embedding on topological surfaces</p>
+    <!-- Articles -->
+    <section id="articles" class="section">
+      <div class="header-action">
+        <h2>Articles & Writing</h2>
+        <a href="https://medium.com/@ashwinkoodathil" target="_blank" rel="noopener">Medium profile →</a>
+      </div>
+      <div class="grid two">
+        <div class="card">
+          <h3>Let’s Learn LangChain Together — Part 1</h3>
+          <p class="sub">Prompts & memory foundations with practical snippets and patterns.</p>
+          <div class="links">
+            <a target="_blank" rel="noopener" href="https://medium.com/@ashwinkoodathil/lets-learn-langchain-together-part-1-97bfcdf4b28d">Read →</a>
+          </div>
+        </div>
+        <div class="card">
+          <h3>Let’s Learn LangChain Together — Part 2</h3>
+          <p class="sub">Chains, RAG, evaluation, and LCEL updates with examples.</p>
+          <div class="links">
+            <a target="_blank" rel="noopener" href="https://medium.com/@ashwinkoodathil/lets-learn-langchain-together-part-2-chains-rag-and-evaluation-lcel-600a4c3dca1a">Read →</a>
+          </div>
+        </div>
+        <div class="card">
+          <h3>Transformers (Work-in-Progress)</h3>
+          <p class="sub">From “Attention Is All You Need” to GPT — math-first intuition.</p>
+          <div class="links">
+            <a href="learnings/transformers.html">Notes →</a>
+          </div>
+        </div>
       </div>
     </section>
 
-    <!-- Certifications Section -->
-    <section id="certifications" class="section">
-      <h2>Certifications in Data Science</h2>
-      <ul>
-        <li><strong>Python For Data Science Professional</strong> – Edureka, Sept 2019</li>
-        <li><strong>Deep Learning Specialization</strong> – Coursera, Dec 2020</li>
-        <li><strong>The Complete SQL Bootcamp</strong> – Udemy, Jul 2021</li>
+    <!-- Learning Notes -->
+    <section id="learning" class="section">
+      <h2>Learning Notes</h2>
+      <ul class="list-clean">
+        <li><a href="learnings/transformers.html">Transformers: a mathematical approach</a> — derivations, attention, positional encodings.</li>
       </ul>
     </section>
 
-    <!-- Technical Skills Section -->
+    <!-- Certifications -->
+    <section id="certs" class="section">
+      <h2>Certifications</h2>
+      <div class="grid three">
+        <div class="card">
+          <div class="provider-badge coursera">Coursera</div>
+          <h3>Supervised Machine Learning: Regression and Classification</h3>
+          <a target="_blank" rel="noopener" href="https://coursera.org/share/52271ce8af6234c7a784a939ebd575c2">View certificate →</a>
+        </div>
+        <div class="card">
+          <div class="provider-badge coursera">Coursera</div>
+          <h3>Foundations: Data, Data, Everywhere</h3>
+          <a target="_blank" rel="noopener" href="https://coursera.org/share/35136a6b9cce626765e52cb3ea2cf8a5">View certificate →</a>
+        </div>
+        <div class="card">
+          <div class="provider-badge coursera">Coursera</div>
+          <h3>NLP with Classification & Vector Spaces</h3>
+          <a target="_blank" rel="noopener" href="https://coursera.org/share/56055f5ec2417c2e803901790cc8810b">View certificate →</a>
+        </div>
+        <div class="card">
+          <div class="provider-badge coursera">Coursera</div>
+          <h3>Introduction to TensorFlow for AI, ML, and DL</h3>
+          <a target="_blank" rel="noopener" href="https://coursera.org/share/c0fd14d22688a375667a2b282fc646cf">View certificate →</a>
+        </div>
+        <div class="card">
+          <div class="provider-badge coursera">Coursera</div>
+          <h3>Sequence Models</h3>
+          <a target="_blank" rel="noopener" href="https://coursera.org/share/8afdea193b65ce14e5ac9af00a0f7d9b">View certificate →</a>
+        </div>
+        <div class="card">
+          <div class="provider-badge coursera">Coursera</div>
+          <h3>Convolutional Neural Networks</h3>
+          <a target="_blank" rel="noopener" href="https://coursera.org/share/8950fe1e56061ebc07c3532a20a2859f">View certificate →</a>
+        </div>
+        <div class="card">
+          <div class="provider-badge coursera">Coursera</div>
+          <h3>Structuring Machine Learning Projects</h3>
+          <a target="_blank" rel="noopener" href="https://coursera.org/share/51cebffcd993570d37d3678bd8e27c1d">View certificate →</a>
+        </div>
+        <div class="card">
+          <div class="provider-badge coursera">Coursera</div>
+          <h3>Improving Deep Neural Networks</h3>
+          <a target="_blank" rel="noopener" href="https://coursera.org/share/03487edbd7602759658f7c7f17aba20db4">View certificate →</a>
+        </div>
+        <div class="card">
+          <div class="provider-badge coursera">Coursera</div>
+          <h3>Neural Networks and Deep Learning</h3>
+          <a target="_blank" rel="noopener" href="https://www.coursera.org/account/accomplishments/verify/857DFPKUJ33E">View certificate →</a>
+        </div>
+        <div class="card">
+          <div class="provider-badge deeplearningai">DeepLearning.AI</div>
+          <h3>LangChain for LLM Application Development</h3>
+          <a target="_blank" rel="noopener" href="https://learn.deeplearning.ai/accomplishments/08048b15-2bba-485b-b75f-7e1d14c94983?usp=sharing">View certificate →</a>
+        </div>
+        <div class="card">
+          <div class="provider-badge edureka">Edureka</div>
+          <h3>Python For Data Science Professionals</h3>
+          <a target="_blank" rel="noopener" href="https://www.edureka.co/my-certificate/03621207a4fe5de6d3a94c42d26ea50e">View certificate →</a>
+        </div>
+        <div class="card">
+          <div class="provider-badge udemy">Udemy</div>
+          <h3>The Complete SQL Bootcamp</h3>
+          <a target="_blank" rel="noopener" href="https://www.udemy.com/certificate/UC-1c0aea36-1c4b-4d0c-b1c0-62f155d72f9f/">View certificate →</a>
+        </div>
+      </div>
+    </section>
+
     <section id="skills" class="section">
-      <h2>Technical Skills</h2>
-      <ul>
-        <li><strong>Languages:</strong> Python, PySpark, R</li>
-        <li><strong>Frameworks:</strong> TensorFlow, Flask, Ray, NLTK, SpaCy, Pandas, NumPy, Numba, SkLearn, SynapseML, Spark ML, PuLP</li>
-        <li><strong>Cloud Platforms:</strong> Microsoft Azure, Google Cloud Platform</li>
-      </ul>
+      <h2>Tech Stack</h2>
+      <div class="stack-bubbles">
+        <!-- (unchanged content for bubbles) -->
+        <!-- Programming & Core Language -->
+        <div class="bubble-card">
+          <div class="bubble-title">Programming & Core Language</div>
+          <div class="logo-cluster">
+            <span class="logo-chip"><img src="logos/tech_stack/python.png" alt="Python"></span>
+            <span class="logo-chip"><img src="logos/tech_stack/numpy.png" alt="NumPy"></span>
+            <span class="logo-chip"><img src="logos/tech_stack/pandas.png" alt="Pandas"></span>
+            <span class="logo-chip"><img src="logos/tech_stack/polars.webp" alt="Polars"></span>
+            <span class="logo-chip"><img src="logos/tech_stack/scipy.png" alt="SciPy"></span>
+          </div>
+        </div>
+
+        <!-- Machine Learning & AI Frameworks -->
+        <div class="bubble-card">
+          <div class="bubble-title">Machine Learning & AI Frameworks</div>
+          <div class="logo-cluster">
+            <span class="logo-chip"><img src="logos/tech_stack/pytorch.png" alt="PyTorch"></span>
+            <span class="logo-chip"><img src="logos/tech_stack/tensorflow.png" alt="TensorFlow"></span>
+            <span class="logo-chip"><img src="logos/tech_stack/sklearn.png" alt="Scikit-learn"></span>
+            <span class="logo-chip"><img src="logos/tech_stack/xgboost.png" alt="XGBoost"></span>
+            <span class="logo-chip"><img src="logos/tech_stack/lightgbm.svg" alt="LightGBM"></span>
+            <span class="logo-chip"><img src="logos/tech_stack/spark_ml.jpg" alt="Spark ML"></span>
+            <span class="logo-chip"><img src="logos/tech_stack/pyspark.png" alt="PySpark"></span>
+            <span class="logo-chip"><img src="logos/tech_stack/ray.png" alt="Ray"></span>
+          </div>
+        </div>
+
+        <!-- Optimization & OR Tools -->
+        <div class="bubble-card">
+          <div class="bubble-title">Optimization & OR Tools</div>
+          <div class="logo-cluster">
+            <span class="logo-chip"><img src="logos/tech_stack/gurobi.jpg" alt="Gurobi"></span>
+            <span class="logo-chip"><img src="logos/tech_stack/pulp.svg" alt="PuLP"></span>
+          </div>
+        </div>
+
+        <!-- NLP & LLM APIs -->
+        <div class="bubble-card">
+          <div class="bubble-title">NLP & LLM APIs</div>
+          <div class="logo-cluster">
+            <span class="logo-chip"><img src="logos/tech_stack/nltk.png" alt="NLTK"></span>
+            <span class="logo-chip"><img src="logos/tech_stack/spacy.png" alt="spaCy"></span>
+            <span class="logo-chip"><img src="logos/tech_stack/hugging_face.png" alt="Hugging Face"></span>
+            <span class="logo-chip"><img src="logos/tech_stack/langchain.png" alt="LangChain"></span>
+            <span class="logo-chip"><img src="logos/tech_stack/langgraph.png" alt="LangGraph"></span>
+            <span class="logo-chip"><img src="logos/tech_stack/Ollama.png" alt="Ollama"></span>
+            <span class="logo-chip"><img src="logos/tech_stack/openai.jpg" alt="OpenAI"></span>
+            <span class="logo-chip"><img src="logos/tech_stack/gemini.png" alt="Gemini"></span>
+          </div>
+        </div>
+
+        <!-- Data Visualization & BI -->
+        <div class="bubble-card">
+          <div class="bubble-title">Data Visualization & BI</div>
+          <div class="logo-cluster">
+            <span class="logo-chip"><img src="logos/tech_stack/matplotlib.svg" alt="Matplotlib"></span>
+            <span class="logo-chip"><img src="logos/tech_stack/seaborn.svg" alt="Seaborn"></span>
+            <span class="logo-chip"><img src="logos/tech_stack/plotly.png" alt="Plotly"></span>
+            <span class="logo-chip"><img src="logos/tech_stack/excel.png" alt="Excel"></span>
+            <span class="logo-chip"><img src="logos/tech_stack/powerbi.png" alt="Power BI"></span>
+          </div>
+        </div>
+
+        <!-- Databases -->
+        <div class="bubble-card">
+          <div class="bubble-title">Databases</div>
+          <div class="logo-cluster">
+            <span class="logo-chip"><img src="logos/tech_stack/postgresql.svg" alt="PostgreSQL"></span>
+            <span class="logo-chip"><img src="logos/tech_stack/mysql.png" alt="MySQL"></span>
+          </div>
+        </div>
+
+        <!-- MLOps & Experiment Tracking -->
+        <div class="bubble-card">
+          <div class="bubble-title">MLOps & Experiment Tracking</div>
+          <div class="logo-cluster">
+            <span class="logo-chip"><img src="logos/tech_stack/mlflow.png" alt="MLflow"></span>
+            <span class="logo-chip"><img src="logos/tech_stack/databricks.png" alt="Databricks"></span>
+          </div>
+        </div>
+
+        <!-- Cloud Platforms -->
+        <div class="bubble-card">
+          <div class="bubble-title">Cloud Platforms</div>
+          <div class="logo-cluster">
+            <span class="logo-chip"><img src="logos/tech_stack/aws.png" alt="AWS"></span>
+            <span class="logo-chip"><img src="logos/tech_stack/azure.png" alt="Azure"></span>
+            <span class="logo-chip"><img src="logos/tech_stack/gcp.png" alt="Google Cloud"></span>
+          </div>
+        </div>
+
+        <!-- Deployment & DevOps -->
+        <div class="bubble-card">
+          <div class="bubble-title">Deployment & DevOps</div>
+          <div class="logo-cluster">
+            <span class="logo-chip"><img src="logos/tech_stack/docker.avif" alt="Docker"></span>
+            <span class="logo-chip"><img src="logos/tech_stack/fastapi.png" alt="FastAPI"></span>
+            <span class="logo-chip"><img src="logos/tech_stack/flask.png" alt="Flask"></span>
+            <span class="logo-chip"><img src="logos/tech_stack/github.png" alt="GitHub"></span>
+          </div>
+        </div>
+      </div>
     </section>
   </main>
 
-  <footer>
-    <p>&copy; 2025 Ashwin Koodathil. All rights reserved.</p>
+  <footer class="site-footer" id="contact">
+    <div class="footer-inner">
+      <div class="contact-block">
+        <h2 class="footer-title">Contact</h2>
+        <p class="contact-line">
+          <a href="tel:+919179643031">+91 917-964-3031</a>
+          <span class="dot">•</span>
+          <a href="mailto:kashwinofficial@gmail.com">kashwinofficial@gmail.com</a>
+          <span class="dot">•</span>
+          <span class="location">Bengaluru, India</span>
+          <span class="dot">•</span>
+          <span class="footer-resume"><a href="ashwin_koodathil_resume.pdf" download>Resume Download</a></span>
+        </p>
+        <p class="muted">Open to project collaborations and research partnerships</p>
+
+        <div class="socials" aria-label="Social links">
+          <a class="icon" href="mailto:kashwinofficial@gmail.com" aria-label="Gmail" rel="noopener">
+            <img src="logos/social_media_logos/gmail.webp" alt="Gmail" />
+          </a>
+          <a class="icon" href="https://linkedin.com/in/ashwin-koodathil/" target="_blank" aria-label="LinkedIn" rel="noopener">
+            <img src="logos/social_media_logos/linkedin.png" alt="LinkedIn" />
+          </a>
+          <a class="icon" href="https://github.com/ashwin-koodathil" target="_blank" aria-label="GitHub" rel="noopener">
+            <img src="logos/social_media_logos/github.png" alt="GitHub" />
+          </a>
+          <a class="icon" href="https://medium.com/@ashwinkoodathil" target="_blank" aria-label="Medium" rel="noopener">
+            <img src="logos/social_media_logos/medium.png" alt="Medium" />
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer-meta">© 2025 Ashwin Koodathil</div>
   </footer>
 </body>
 </html>
