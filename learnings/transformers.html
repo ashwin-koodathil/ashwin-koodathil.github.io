@@ -15,7 +15,8 @@
     .toc { background: #fff; border: 1px solid #eee; border-radius: 12px; padding: 16px; max-width: 320px; position: sticky; top: 20px; height: fit-content; box-shadow: 0 6px 18px rgba(0,0,0,0.06); }
     .toc h3 { margin-bottom: 8px; }
     .toc ol { margin-left: 18px; }
-    .grid { display: grid; grid-template-columns: 320px 1fr; gap: 24px; align-items: start; }
+    .grid { display: grid; grid-template-columns: 280px minmax(0, 740px); gap: 24px; align-items: start; }
+    .container { max-width: 1100px; margin: 0 auto; padding: 0 16px; }
     .section h2, .section h3 { margin-top: 24px; }
     .badge { display:inline-block; border:1px solid #ddd; border-radius: 999px; padding: 2px 10px; font-size: 12px; margin-right: 6px; }
     .code { background:#0f1522; color:#f3f7ff; padding:14px 16px; border-radius:12px; overflow:auto; font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace; font-size: 0.9rem; }
@@ -42,7 +43,7 @@
     </div>
   </header>
 
-  <main class="grid">
+  <main class="container grid">
     <!-- TABLE OF CONTENTS -->
     <aside class="toc" aria-label="Table of Contents">
       <h3>Table of Contents</h3>
@@ -53,14 +54,21 @@
         <li><a href="#math">Part II — Core Math: Attention</a></li>
         <li><a href="#blocks">Part II — Building Blocks</a></li>
         <li><a href="#training">Part II — Objectives & Training</a></li>
+        <li><a href="#posttrain">Part II — Post-Training (SFT/RLHF/DPO)</a></li>
+        <li><a href="#finetune">Part II — Fine-Tuning & PEFT (LoRA/QLoRA)</a></li>
+        <li><a href="#tokenization">Part II — Tokenization</a></li>
         <li><a href="#scaling">Part II — Scaling & Efficiency</a></li>
+        <li><a href="#inference">Part II — Inference & Serving</a></li>
         <li><a href="#examples">Part IV — Code Examples</a></li>
         <li><a href="#model-zoo">Part III — Model Zoo & Architectures</a></li>
+        <li><a href="#model-matrix">Part III — Model Comparison Matrix</a></li>
+        <li><a href="#rag">RAG Integration</a></li>
         <li><a href="#eval">Evaluation & GPT Case Study</a></li>
         <li><a href="#cheatsheet">Cheat Sheet</a></li>
         <li><a href="#refs">References</a></li>
       </ol>
     </aside>
+    
 
     <section>
       <!-- OVERVIEW -->
@@ -179,7 +187,44 @@
           </ul>
         </details>
       </section>
-
+      <!-- POST TRAINING -->
+      <section class="section" id="posttrain">
+        <h2>Part II — Post-Training (Alignment)</h2>
+        <ul>
+          <li><strong>SFT</strong> (Supervised Fine-Tuning): train on instruction → response pairs.</li>
+          <li><strong>RLHF</strong>: learn a reward model from human preference rankings; optimize the policy.</li>
+          <li><strong>DPO</strong>: direct preference optimization (simplifies RLHF by skipping an explicit reward model).</li>
+          <li><strong>Safety</strong>: refusal policy tuning, content filters, red-teaming datasets.</li>
+        </ul>
+      </section>
+      <!-- FINE TUNING -->
+      <section class="section" id="finetune">
+        <h2>Part II — Fine-Tuning & PEFT</h2>
+        <ul>
+          <li><strong>Full fine-tune</strong>: update all weights (best quality, highest cost).</li>
+          <li><strong>PEFT</strong>: <em>LoRA</em> (low-rank adapters), <em>QLoRA</em> (4-bit base + LoRA), prompt-tuning/IA3.</li>
+          <li>Great for domain adaptation and on-prem/edge constraints.</li>
+        </ul>
+      </section>
+      <!-- TOKENIZATION -->
+      <section class="section" id="tokenization">
+        <h2>Part II — Tokenization</h2>
+        <p>Subword tokenizers balance vocab size and OOV handling.</p>
+        <ul>
+          <li><strong>BPE</strong>: merges frequent character pairs.</li>
+          <li><strong>WordPiece</strong>: probabilistic merges; used in BERT family.</li>
+          <li><strong>Unigram LM</strong>: probabilistic subword inventory (SentencePiece).</li>
+        </ul>
+        <details><summary>Tiny BPE sketch (conceptual)</summary>
+          <pre class="code"><code># Pseudocode: learn merges by frequency
+      vocab = {"l o w":5, "l o w e r":2, "n e w e s t":6}
+      for step in range(K):
+          pair = most_frequent_bigram(vocab)
+          merge(pair)  # replace occurrences of 'a b' with 'ab'
+      </code></pre>
+        </details>
+      </section>
+      
       <!-- SCALING & EFFICIENCY -->
       <section class="section" id="scaling">
         <h2>Part II — Scaling & Efficiency</h2>
@@ -192,7 +237,18 @@
           <li><strong>Scaling laws</strong>: balance model size, data size, and training compute (Chinchilla‑style insights).</li>
         </ul>
       </section>
-
+      <!-- INFERENCE -->
+      <section class="section" id="inference">
+        <h2>Part II — Inference & Serving</h2>
+        <ul>
+          <li><strong>Grouped/Multi-Query Attention</strong>: share K/V across heads to reduce memory bandwidth.</li>
+          <li><strong>Paged attention & prefix caching</strong>: memory-efficient long-context serving.</li>
+          <li><strong>Speculative decoding</strong>: draft with a small model; verify with the large model.</li>
+          <li><strong>Quantization</strong>: 8/4-bit (INT8/INT4/FP4/NF4) for throughput/cost.</li>
+          <li><strong>Parallelism</strong>: tensor/sequence/pipeline; compiler backends (e.g., TorchInductor/XLA).</li>
+        </ul>
+      </section>
+      
       <!-- CODE EXAMPLES -->
       <section class="section" id="examples">
         <h2>Part IV — Code Examples</h2>
@@ -372,7 +428,34 @@ class MultiHeadAttention(nn.Module):
         </table>
         <p class="small">Note: Exact parameter counts and training specifics vary by release; the tables highlight architecture patterns.</p>
       </section>
-
+      <!-- MODEL MATRIX -->
+      <section class="section" id="model-matrix">
+        <h2>Part III — Model Comparison Matrix</h2>
+        <table class="table">
+          <thead>
+            <tr><th>Model</th><th>Type</th><th>Objective</th><th>Positions</th><th>Attention</th><th>Tokenizer</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>GPT (generic)</td><td>Decoder-only</td><td>CLM</td><td>Learned/RoPE variants</td><td>Multi-head; often MQA/GQA in serving</td><td>BPE-style</td></tr>
+            <tr><td>T5 (generic)</td><td>Enc-Dec</td><td>Seq2Seq (span corruption)</td><td>Relative position bias</td><td>Standard MHA</td><td>SentencePiece (Unigram)</td></tr>
+            <tr><td>LLaMA (generic)</td><td>Decoder-only</td><td>CLM</td><td>RoPE</td><td>GQA + Pre-Norm</td><td>SentencePiece</td></tr>
+            <tr><td>Mistral/Mixtral</td><td>Decoder-only</td><td>CLM</td><td>RoPE</td><td>Sliding-window / MoE experts</td><td>SentencePiece</td></tr>
+          </tbody>
+        </table>
+        <p class="small">High-level traits; exact choices vary by release/version.</p>
+      </section>
+      <!-- RAG -->
+      <section class="section" id="rag">
+        <h2>RAG Integration (Retriever-Augmented Generation)</h2>
+        <p>Blend retrieval with generation to ground answers in your data.</p>
+        <ul>
+          <li><strong>Index</strong>: chunk docs; embed with a strong encoder.</li>
+          <li><strong>Retrieve</strong>: top-k semantic search (optionally + BM25 hybrid).</li>
+          <li><strong>Augment</strong>: build a prompt with selected chunks; add citations.</li>
+          <li><strong>Guardrails</strong>: de-dup, re-rank, length control; evaluate faithfulness.</li>
+        </ul>
+      </section>
+      
       <!-- EVALUATION -->
       <section class="section" id="eval">
         <h2>Evaluation & GPT Case Study</h2>
